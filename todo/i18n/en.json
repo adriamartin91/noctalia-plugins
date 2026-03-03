@@ -3,6 +3,9 @@
     "todo_count_plural": "{count} todos",
     "todo_count_singular": "{count} todo"
   },
+  "actions": {
+    "widget_settings": "Settings"
+  },
   "desktop_widget": {
     "empty_state": "No to-dos",
     "header_title": "To-Do List",
