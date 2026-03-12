@@ -1,7 +1,12 @@
-# Changelog v2.2.1
+# Changelog v2.2.2
 
 ## Release Date
 **2026-03-12**
+
+## New Features
+
+#### Control Center Shortcut
+- Added Control Center Widget shortcut to Control Center
 
 ## Bug Fixes
 

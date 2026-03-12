@@ -41,8 +41,7 @@ Item {
     readonly property bool allowAttach: true
 
     // Panel dimensions - fullscreen transparent container
-    property int contentPreferredHeight: 1000 * Style.uiScaleRatio
-    property int contentPreferredWidth: 1400 * Style.uiScaleRatio
+    property real contentPreferredWidth: 1450 * Style.uiScaleRatio
 
     // Keyboard navigation
     property int selectedIndex: 0
@@ -321,7 +320,10 @@ Item {
                                 colorFg: (typeof Color !== "undefined") ? (parent.isActive ? Color.mOnPrimary : Color.mOnSurface) : "#FFFFFF"
                                 colorFgHover: (typeof Color !== "undefined") ? (parent.isActive ? Color.mOnPrimary : Color.mOnSurface) : "#FFFFFF"
                                 onClicked: root.filterType = ""
-                                Keys.onTabPressed: { root.filterType = ""; event.accepted = true; }
+                                Keys.onTabPressed: {
+                                    root.filterType = "";
+                                    event.accepted = true;
+                                }
                             }
 
                             // Active burst ring - matches groupedWorkspaceNumberBurst
@@ -335,8 +337,18 @@ Item {
                                 border.width: 2
                                 opacity: parent.isActive ? 0.85 : 0
                                 scale: parent.isActive ? 1.0 : 0.7
-                                Behavior on opacity { NumberAnimation { duration: Style.animationFast; easing.type: Easing.InOutCubic } }
-                                Behavior on scale { NumberAnimation { duration: Style.animationFast; easing.type: Easing.OutBack } }
+                                Behavior on opacity {
+                                    NumberAnimation {
+                                        duration: Style.animationFast
+                                        easing.type: Easing.InOutCubic
+                                    }
+                                }
+                                Behavior on scale {
+                                    NumberAnimation {
+                                        duration: Style.animationFast
+                                        easing.type: Easing.OutBack
+                                    }
+                                }
                             }
 
                             // Count badge - matches groupedWorkspaceNumberContainer pattern
@@ -356,8 +368,19 @@ Item {
                                     radius: Math.min(Style.radiusL, width / 2)
                                     color: (typeof Color !== "undefined") ? parent.parent.accentColor : "#BB86FC"
                                     scale: parent.parent.parent.isActive ? 1.0 : 0.85
-                                    Behavior on scale { NumberAnimation { duration: Style.animationNormal; easing.type: Easing.OutBack } }
-                                    Behavior on color { enabled: (typeof Color !== "undefined") && !Color.isTransitioning; ColorAnimation { duration: Style.animationFast; easing.type: Easing.InOutCubic } }
+                                    Behavior on scale {
+                                        NumberAnimation {
+                                            duration: Style.animationNormal
+                                            easing.type: Easing.OutBack
+                                        }
+                                    }
+                                    Behavior on color {
+                                        enabled: (typeof Color !== "undefined") && !Color.isTransitioning
+                                        ColorAnimation {
+                                            duration: Style.animationFast
+                                            easing.type: Easing.InOutCubic
+                                        }
+                                    }
                                 }
 
                                 NText {
@@ -395,7 +418,10 @@ Item {
                                 colorFg: (typeof Color !== "undefined") ? (parent.isActive ? Color.mOnPrimary : Color.mOnSurface) : "#FFFFFF"
                                 colorFgHover: (typeof Color !== "undefined") ? (parent.isActive ? Color.mOnPrimary : Color.mOnSurface) : "#FFFFFF"
                                 onClicked: root.filterType = "Text"
-                                Keys.onTabPressed: { root.filterType = "Image"; event.accepted = true; }
+                                Keys.onTabPressed: {
+                                    root.filterType = "Image";
+                                    event.accepted = true;
+                                }
                             }
 
                             Rectangle {
@@ -408,14 +434,25 @@ Item {
                                 border.width: 2
                                 opacity: parent.isActive ? 0.85 : 0
                                 scale: parent.isActive ? 1.0 : 0.7
-                                Behavior on opacity { NumberAnimation { duration: Style.animationFast; easing.type: Easing.InOutCubic } }
-                                Behavior on scale { NumberAnimation { duration: Style.animationFast; easing.type: Easing.OutBack } }
+                                Behavior on opacity {
+                                    NumberAnimation {
+                                        duration: Style.animationFast
+                                        easing.type: Easing.InOutCubic
+                                    }
+                                }
+                                Behavior on scale {
+                                    NumberAnimation {
+                                        duration: Style.animationFast
+                                        easing.type: Easing.OutBack
+                                    }
+                                }
                             }
 
                             Item {
                                 visible: parent.itemCount > 0
                                 anchors {
-                                    left: btnText.left; top: btnText.top
+                                    left: btnText.left
+                                    top: btnText.top
                                     leftMargin: -Style.fontSizeXS * 0.55
                                     topMargin: -Style.fontSizeXS * 0.25
                                 }
@@ -427,8 +464,19 @@ Item {
                                     radius: Math.min(Style.radiusL, width / 2)
                                     color: (typeof Color !== "undefined") ? parent.parent.accentColor : "#BB86FC"
                                     scale: parent.parent.parent.isActive ? 1.0 : 0.85
-                                    Behavior on scale { NumberAnimation { duration: Style.animationNormal; easing.type: Easing.OutBack } }
-                                    Behavior on color { enabled: (typeof Color !== "undefined") && !Color.isTransitioning; ColorAnimation { duration: Style.animationFast; easing.type: Easing.InOutCubic } }
+                                    Behavior on scale {
+                                        NumberAnimation {
+                                            duration: Style.animationNormal
+                                            easing.type: Easing.OutBack
+                                        }
+                                    }
+                                    Behavior on color {
+                                        enabled: (typeof Color !== "undefined") && !Color.isTransitioning
+                                        ColorAnimation {
+                                            duration: Style.animationFast
+                                            easing.type: Easing.InOutCubic
+                                        }
+                                    }
                                 }
                                 NText {
                                     id: badgeText
@@ -477,14 +525,25 @@ Item {
                                 border.width: 2
                                 opacity: parent.isActive ? 0.85 : 0
                                 scale: parent.isActive ? 1.0 : 0.7
-                                Behavior on opacity { NumberAnimation { duration: Style.animationFast; easing.type: Easing.InOutCubic } }
-                                Behavior on scale { NumberAnimation { duration: Style.animationFast; easing.type: Easing.OutBack } }
+                                Behavior on opacity {
+                                    NumberAnimation {
+                                        duration: Style.animationFast
+                                        easing.type: Easing.InOutCubic
+                                    }
+                                }
+                                Behavior on scale {
+                                    NumberAnimation {
+                                        duration: Style.animationFast
+                                        easing.type: Easing.OutBack
+                                    }
+                                }
                             }
 
                             Item {
                                 visible: parent.itemCount > 0
                                 anchors {
-                                    left: btnImage.left; top: btnImage.top
+                                    left: btnImage.left
+                                    top: btnImage.top
                                     leftMargin: -Style.fontSizeXS * 0.55
                                     topMargin: -Style.fontSizeXS * 0.25
                                 }
@@ -496,8 +555,19 @@ Item {
                                     radius: Math.min(Style.radiusL, width / 2)
                                     color: (typeof Color !== "undefined") ? parent.parent.accentColor : "#03DAC6"
                                     scale: parent.parent.parent.isActive ? 1.0 : 0.85
-                                    Behavior on scale { NumberAnimation { duration: Style.animationNormal; easing.type: Easing.OutBack } }
-                                    Behavior on color { enabled: (typeof Color !== "undefined") && !Color.isTransitioning; ColorAnimation { duration: Style.animationFast; easing.type: Easing.InOutCubic } }
+                                    Behavior on scale {
+                                        NumberAnimation {
+                                            duration: Style.animationNormal
+                                            easing.type: Easing.OutBack
+                                        }
+                                    }
+                                    Behavior on color {
+                                        enabled: (typeof Color !== "undefined") && !Color.isTransitioning
+                                        ColorAnimation {
+                                            duration: Style.animationFast
+                                            easing.type: Easing.InOutCubic
+                                        }
+                                    }
                                 }
                                 NText {
                                     id: badgeImage
@@ -546,14 +616,25 @@ Item {
                                 border.width: 2
                                 opacity: parent.isActive ? 0.85 : 0
                                 scale: parent.isActive ? 1.0 : 0.7
-                                Behavior on opacity { NumberAnimation { duration: Style.animationFast; easing.type: Easing.InOutCubic } }
-                                Behavior on scale { NumberAnimation { duration: Style.animationFast; easing.type: Easing.OutBack } }
+                                Behavior on opacity {
+                                    NumberAnimation {
+                                        duration: Style.animationFast
+                                        easing.type: Easing.InOutCubic
+                                    }
+                                }
+                                Behavior on scale {
+                                    NumberAnimation {
+                                        duration: Style.animationFast
+                                        easing.type: Easing.OutBack
+                                    }
+                                }
                             }
 
                             Item {
                                 visible: parent.itemCount > 0
                                 anchors {
-                                    left: btnColorFilter.left; top: btnColorFilter.top
+                                    left: btnColorFilter.left
+                                    top: btnColorFilter.top
                                     leftMargin: -Style.fontSizeXS * 0.55
                                     topMargin: -Style.fontSizeXS * 0.25
                                 }
@@ -565,8 +646,19 @@ Item {
                                     radius: Math.min(Style.radiusL, width / 2)
                                     color: (typeof Color !== "undefined") ? parent.parent.accentColor : "#CF6679"
                                     scale: parent.parent.parent.isActive ? 1.0 : 0.85
-                                    Behavior on scale { NumberAnimation { duration: Style.animationNormal; easing.type: Easing.OutBack } }
-                                    Behavior on color { enabled: (typeof Color !== "undefined") && !Color.isTransitioning; ColorAnimation { duration: Style.animationFast; easing.type: Easing.InOutCubic } }
+                                    Behavior on scale {
+                                        NumberAnimation {
+                                            duration: Style.animationNormal
+                                            easing.type: Easing.OutBack
+                                        }
+                                    }
+                                    Behavior on color {
+                                        enabled: (typeof Color !== "undefined") && !Color.isTransitioning
+                                        ColorAnimation {
+                                            duration: Style.animationFast
+                                            easing.type: Easing.InOutCubic
+                                        }
+                                    }
                                 }
                                 NText {
                                     id: badgeColorFilter
@@ -615,14 +707,25 @@ Item {
                                 border.width: 2
                                 opacity: parent.isActive ? 0.85 : 0
                                 scale: parent.isActive ? 1.0 : 0.7
-                                Behavior on opacity { NumberAnimation { duration: Style.animationFast; easing.type: Easing.InOutCubic } }
-                                Behavior on scale { NumberAnimation { duration: Style.animationFast; easing.type: Easing.OutBack } }
+                                Behavior on opacity {
+                                    NumberAnimation {
+                                        duration: Style.animationFast
+                                        easing.type: Easing.InOutCubic
+                                    }
+                                }
+                                Behavior on scale {
+                                    NumberAnimation {
+                                        duration: Style.animationFast
+                                        easing.type: Easing.OutBack
+                                    }
+                                }
                             }
 
                             Item {
                                 visible: parent.itemCount > 0
                                 anchors {
-                                    left: btnLink.left; top: btnLink.top
+                                    left: btnLink.left
+                                    top: btnLink.top
                                     leftMargin: -Style.fontSizeXS * 0.55
                                     topMargin: -Style.fontSizeXS * 0.25
                                 }
@@ -634,8 +737,19 @@ Item {
                                     radius: Math.min(Style.radiusL, width / 2)
                                     color: (typeof Color !== "undefined") ? parent.parent.accentColor : "#BB86FC"
                                     scale: parent.parent.parent.isActive ? 1.0 : 0.85
-                                    Behavior on scale { NumberAnimation { duration: Style.animationNormal; easing.type: Easing.OutBack } }
-                                    Behavior on color { enabled: (typeof Color !== "undefined") && !Color.isTransitioning; ColorAnimation { duration: Style.animationFast; easing.type: Easing.InOutCubic } }
+                                    Behavior on scale {
+                                        NumberAnimation {
+                                            duration: Style.animationNormal
+                                            easing.type: Easing.OutBack
+                                        }
+                                    }
+                                    Behavior on color {
+                                        enabled: (typeof Color !== "undefined") && !Color.isTransitioning
+                                        ColorAnimation {
+                                            duration: Style.animationFast
+                                            easing.type: Easing.InOutCubic
+                                        }
+                                    }
                                 }
                                 NText {
                                     id: badgeLink
@@ -684,14 +798,25 @@ Item {
                                 border.width: 2
                                 opacity: parent.isActive ? 0.85 : 0
                                 scale: parent.isActive ? 1.0 : 0.7
-                                Behavior on opacity { NumberAnimation { duration: Style.animationFast; easing.type: Easing.InOutCubic } }
-                                Behavior on scale { NumberAnimation { duration: Style.animationFast; easing.type: Easing.OutBack } }
+                                Behavior on opacity {
+                                    NumberAnimation {
+                                        duration: Style.animationFast
+                                        easing.type: Easing.InOutCubic
+                                    }
+                                }
+                                Behavior on scale {
+                                    NumberAnimation {
+                                        duration: Style.animationFast
+                                        easing.type: Easing.OutBack
+                                    }
+                                }
                             }
 
                             Item {
                                 visible: parent.itemCount > 0
                                 anchors {
-                                    left: btnCode.left; top: btnCode.top
+                                    left: btnCode.left
+                                    top: btnCode.top
                                     leftMargin: -Style.fontSizeXS * 0.55
                                     topMargin: -Style.fontSizeXS * 0.25
                                 }
@@ -703,8 +828,19 @@ Item {
                                     radius: Math.min(Style.radiusL, width / 2)
                                     color: (typeof Color !== "undefined") ? parent.parent.accentColor : "#CF6679"
                                     scale: parent.parent.parent.isActive ? 1.0 : 0.85
-                                    Behavior on scale { NumberAnimation { duration: Style.animationNormal; easing.type: Easing.OutBack } }
-                                    Behavior on color { enabled: (typeof Color !== "undefined") && !Color.isTransitioning; ColorAnimation { duration: Style.animationFast; easing.type: Easing.InOutCubic } }
+                                    Behavior on scale {
+                                        NumberAnimation {
+                                            duration: Style.animationNormal
+                                            easing.type: Easing.OutBack
+                                        }
+                                    }
+                                    Behavior on color {
+                                        enabled: (typeof Color !== "undefined") && !Color.isTransitioning
+                                        ColorAnimation {
+                                            duration: Style.animationFast
+                                            easing.type: Easing.InOutCubic
+                                        }
+                                    }
                                 }
                                 NText {
                                     id: badgeCode
@@ -753,14 +889,25 @@ Item {
                                 border.width: 2
                                 opacity: parent.isActive ? 0.85 : 0
                                 scale: parent.isActive ? 1.0 : 0.7
-                                Behavior on opacity { NumberAnimation { duration: Style.animationFast; easing.type: Easing.InOutCubic } }
-                                Behavior on scale { NumberAnimation { duration: Style.animationFast; easing.type: Easing.OutBack } }
+                                Behavior on opacity {
+                                    NumberAnimation {
+                                        duration: Style.animationFast
+                                        easing.type: Easing.InOutCubic
+                                    }
+                                }
+                                Behavior on scale {
+                                    NumberAnimation {
+                                        duration: Style.animationFast
+                                        easing.type: Easing.OutBack
+                                    }
+                                }
                             }
 
                             Item {
                                 visible: parent.itemCount > 0
                                 anchors {
-                                    left: btnEmoji.left; top: btnEmoji.top
+                                    left: btnEmoji.left
+                                    top: btnEmoji.top
                                     leftMargin: -Style.fontSizeXS * 0.55
                                     topMargin: -Style.fontSizeXS * 0.25
                                 }
@@ -772,8 +919,19 @@ Item {
                                     radius: Math.min(Style.radiusL, width / 2)
                                     color: (typeof Color !== "undefined") ? parent.parent.accentColor : "#BB86FC"
                                     scale: parent.parent.parent.isActive ? 1.0 : 0.85
-                                    Behavior on scale { NumberAnimation { duration: Style.animationNormal; easing.type: Easing.OutBack } }
-                                    Behavior on color { enabled: (typeof Color !== "undefined") && !Color.isTransitioning; ColorAnimation { duration: Style.animationFast; easing.type: Easing.InOutCubic } }
+                                    Behavior on scale {
+                                        NumberAnimation {
+                                            duration: Style.animationNormal
+                                            easing.type: Easing.OutBack
+                                        }
+                                    }
+                                    Behavior on color {
+                                        enabled: (typeof Color !== "undefined") && !Color.isTransitioning
+                                        ColorAnimation {
+                                            duration: Style.animationFast
+                                            easing.type: Easing.InOutCubic
+                                        }
+                                    }
                                 }
                                 NText {
                                     id: badgeEmoji
@@ -822,14 +980,25 @@ Item {
                                 border.width: 2
                                 opacity: parent.isActive ? 0.85 : 0
                                 scale: parent.isActive ? 1.0 : 0.7
-                                Behavior on opacity { NumberAnimation { duration: Style.animationFast; easing.type: Easing.InOutCubic } }
-                                Behavior on scale { NumberAnimation { duration: Style.animationFast; easing.type: Easing.OutBack } }
+                                Behavior on opacity {
+                                    NumberAnimation {
+                                        duration: Style.animationFast
+                                        easing.type: Easing.InOutCubic
+                                    }
+                                }
+                                Behavior on scale {
+                                    NumberAnimation {
+                                        duration: Style.animationFast
+                                        easing.type: Easing.OutBack
+                                    }
+                                }
                             }
 
                             Item {
                                 visible: parent.itemCount > 0
                                 anchors {
-                                    left: btnFile.left; top: btnFile.top
+                                    left: btnFile.left
+                                    top: btnFile.top
                                     leftMargin: -Style.fontSizeXS * 0.55
                                     topMargin: -Style.fontSizeXS * 0.25
                                 }
@@ -841,8 +1010,19 @@ Item {
                                     radius: Math.min(Style.radiusL, width / 2)
                                     color: (typeof Color !== "undefined") ? parent.parent.accentColor : "#03DAC6"
                                     scale: parent.parent.parent.isActive ? 1.0 : 0.85
-                                    Behavior on scale { NumberAnimation { duration: Style.animationNormal; easing.type: Easing.OutBack } }
-                                    Behavior on color { enabled: (typeof Color !== "undefined") && !Color.isTransitioning; ColorAnimation { duration: Style.animationFast; easing.type: Easing.InOutCubic } }
+                                    Behavior on scale {
+                                        NumberAnimation {
+                                            duration: Style.animationNormal
+                                            easing.type: Easing.OutBack
+                                        }
+                                    }
+                                    Behavior on color {
+                                        enabled: (typeof Color !== "undefined") && !Color.isTransitioning
+                                        ColorAnimation {
+                                            duration: Style.animationFast
+                                            easing.type: Easing.InOutCubic
+                                        }
+                                    }
                                 }
                                 NText {
                                     id: badgeFile
@@ -854,7 +1034,6 @@ Item {
                                 }
                             }
                         }
-
                     }
 
                     Rectangle {

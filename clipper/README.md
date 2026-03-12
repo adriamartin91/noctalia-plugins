@@ -6,6 +6,9 @@
 
 ## ✨ Features
 
+### ⚙️ Control Center Shortcut
+- **Control Center Shortcut**: Access Clipper in Control Center shortcut instead to save widget spaces in your bar
+
 ### 📋 Clipboard Management
 - **Unlimited History**: Access your entire clipboard history powered by `cliphist`
 - **Smart Filtering**: Filter by type (text, images, colors, links, code, emoji, files)
