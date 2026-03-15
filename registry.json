@@ -566,7 +566,7 @@
     {
       "id": "network-indicator",
       "name": "Network Indicator",
-      "version": "1.0.5",
+      "version": "1.0.6",
       "official": false,
       "author": "tonigineer",
       "description": "A `lively` network traffic indicator.",
@@ -578,7 +578,7 @@
         "Network",
         "Indicator"
       ],
-      "lastUpdated": "2026-01-26T23:59:29-05:00"
+      "lastUpdated": "2026-03-15T13:25:43+01:00"
     },
     {
       "id": "network-manager-vpn",
