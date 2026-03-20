@@ -355,7 +355,7 @@ function renderBlocks(tokens, style) {
                         listHtml.push(`<div style="margin-left: ${pxIndent}px; margin-top: 4px; margin-bottom: 4px;">${bulletStr} ${parseInline(item.text, style)}</div>`);
                     }
                 }
-                out.push(listHtml.join(style.lineBreakTag)); // Lists should be somewhat compact
+                out.push(listHtml.join('')); // Lists should be somewhat compact
                 break;
 
             case "table":
