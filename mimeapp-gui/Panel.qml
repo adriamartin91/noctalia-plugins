@@ -141,13 +141,13 @@ Item {
 
     order.sort()
 
-    var tabs = [{ "key": "all", "name": "All", "count": entriesModel.count }]
-    tabs.push({ "key": "common", "name": "Common", "count": commonCount })
+    var tabs = [{ "key": "all", "name": pluginApi?.tr("panel.tab.all"), "count": entriesModel.count }]
+    tabs.push({ "key": "common", "name": pluginApi?.tr("panel.tab.common"), "count": commonCount })
     for (var j = 0; j < order.length; j++) {
       var key = order[j]
       tabs.push({
         "key": key,
-        "name": key,
+        "name": pluginApi?.tr("panel.tab." + key) || key,
         "count": counts[key]
       })
     }
