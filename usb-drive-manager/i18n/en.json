@@ -14,8 +14,8 @@
   },
   "device": {
     "mounted": "Mounted",
-    "used": "used",
-    "free": "free",
+    "used": "{size} used",
+    "free": "{size} free",
     "action-open": "Open",
     "action-mount": "Mount",
     "action-unmount": "Unmount",

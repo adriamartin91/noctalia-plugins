@@ -14,8 +14,8 @@
   },
   "device": {
     "mounted": "Eingehängt",
-    "used": "belegt",
-    "free": "frei",
+    "used": "{size} belegt",
+    "free": "{size} frei",
     "action-open": "Öffnen",
     "action-mount": "Einhängen",
     "action-unmount": "Aushängen",

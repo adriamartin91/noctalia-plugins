@@ -148,7 +148,7 @@ Rectangle {
                 Layout.fillWidth: true
 
                 NText {
-                    text: (device?.usedSize || "") + " " + pluginApi?.tr("device.used")
+                    text: pluginApi?.tr("device.used", { size: device?.usedSize ?? "" })
                     pointSize: Style.fontSizeXXS
                     color: Color.mOnSurfaceVariant
                 }
@@ -156,7 +156,7 @@ Rectangle {
                 Item { Layout.fillWidth: true }
 
                 NText {
-                    text: (device?.freeSize || "") + " " + pluginApi?.tr("device.free")
+                    text: pluginApi?.tr("device.free", { size: device?.freeSize ?? "" })
                     pointSize: Style.fontSizeXXS
                     color: Color.mOnSurfaceVariant
                 }
