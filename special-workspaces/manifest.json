@@ -39,7 +39,8 @@
           "icon": "message"
         }
       ],
-      "drawer": true
+      "drawer": true,
+      "hideEmptyWorkspaces": true
     }
   }
 }
