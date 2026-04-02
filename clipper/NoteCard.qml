@@ -167,7 +167,7 @@ Rectangle {
                             anchors.fill: parent
                             verticalAlignment: Text.AlignVCenter
                             horizontalAlignment: Text.AlignLeft
-                            text: pluginApi?.tr("notecards.untitled-placeholder") || "Untitled"
+                            text: pluginApi?.tr("notecards.untitled-placeholder")
                             color: parent.color
                             opacity: 0.5
                             visible: titleInput.text.length === 0
@@ -189,7 +189,7 @@ Rectangle {
                 
                 NIconButton {
                     icon: note && note.isPrivate ? "eye-off" : "eye"
-                    tooltipText: pluginApi?.tr("notecards.toggle-privacy-mode") || "Toggle privacy mode"
+                    tooltipText: pluginApi?.tr("notecards.toggle-privacy-mode")
                     colorFg: {
                         const noteColor = note ? note.color : "yellow";
                         const scheme = colorSchemes[noteColor];
@@ -211,7 +211,7 @@ Rectangle {
 
                 NIconButton {
                     icon: "palette"
-                    tooltipText: pluginApi?.tr("notecards.change-color") || "Change Color"
+                    tooltipText: pluginApi?.tr("notecards.change-color")
                     colorFg: {
                         const noteColor = note ? note.color : "yellow";
                         const scheme = colorSchemes[noteColor];
@@ -239,7 +239,7 @@ Rectangle {
 
                 NIconButton {
                     icon: "file-export"
-                    tooltipText: pluginApi?.tr("notecards.export") || "Export to .txt"
+                    tooltipText: pluginApi?.tr("notecards.export")
                     colorFg: {
                         const noteColor = note ? note.color : "yellow";
                         const scheme = colorSchemes[noteColor];
@@ -259,7 +259,7 @@ Rectangle {
 
                 NIconButton {
                     icon: "trash"
-                    tooltipText: pluginApi?.tr("notecards.delete") || "Delete Note"
+                    tooltipText: pluginApi?.tr("notecards.delete")
                     colorFg: {
                         const noteColor = note ? note.color : "yellow";
                         const scheme = colorSchemes[noteColor];
