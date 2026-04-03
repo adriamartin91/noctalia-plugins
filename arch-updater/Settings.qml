@@ -9,9 +9,7 @@ ColumnLayout {
     property var pluginApi: null
 
     // Commands
-    property string nameCmd: pluginApi.pluginSettings.nameCmd || pluginApi.manifest.metadata.defaultSettings.nameCmd
-    property string oldVerCmd: pluginApi.pluginSettings.oldVerCmd || pluginApi.manifest.metadata.defaultSettings.oldVerCmd
-    property string newVerCmd: pluginApi.pluginSettings.newVerCmd || pluginApi.manifest.metadata.defaultSettings.newVerCmd
+    property string checkCmd: pluginApi.pluginSettings.checkCmd || pluginApi.manifest.metadata.defaultSettings.checkCmd
     property string updateCmd: pluginApi.pluginSettings.updateCmd || pluginApi.manifest.metadata.defaultSettings.updateCmd
 
     // Show toast on refresh
@@ -51,39 +49,15 @@ ColumnLayout {
 
     // Commands
 
-    NTextInput { // Name Command
+    NTextInput { // Check Command
         Layout.fillWidth: true
-        label: pluginApi.tr("settings.nameCmd")
-        description: pluginApi.tr("settings.nameCmdDesc")
-        placeholderText: pluginApi.manifest.metadata.defaultSettings.nameCmd
-        text: root.nameCmd
+        label: pluginApi.tr("settings.checkCmd")
+        description: pluginApi.tr("settings.checkCmdDesc")
+        placeholderText: pluginApi.manifest.metadata.defaultSettings.checkCmd
+        text: root.checkCmd
         onTextChanged: {
-            root.nameCmd = text
-            Logger.d("Update Widget", "Name command set to: " + root.nameCmd)
-        }
-    }
-
-    NTextInput { // Old Version Command
-        Layout.fillWidth: true
-        label: pluginApi.tr("settings.oldVerCmd")
-        description: pluginApi.tr("settings.oldVerCmdDesc")
-        placeholderText: pluginApi.manifest.metadata.defaultSettings.oldVerCmd
-        text: root.oldVerCmd
-        onTextChanged: {
-            root.oldVerCmd = text
-            Logger.d("Update Widget", "Name command set to: " + root.oldVerCmd)
-        }
-    }
-
-    NTextInput { // New Version Command
-        Layout.fillWidth: true
-        label: pluginApi.tr("settings.newVerCmd")
-        description: pluginApi.tr("settings.newVerCmdDesc")
-        placeholderText: pluginApi.manifest.metadata.defaultSettings.newVerCmd
-        text: root.newVerCmd
-        onTextChanged: {
-            root.newVerCmd = text
-            Logger.d("Update Widget", "Name command set to: " + root.newVerCmd)
+            root.checkCmd = text
+            Logger.d("Update Widget", "Check command set to: " + root.checkCmd)
         }
     }
 
@@ -256,9 +230,7 @@ ColumnLayout {
             return
         }
 
-        pluginApi.pluginSettings.nameCmd = root.nameCmd
-        pluginApi.pluginSettings.oldVerCmd = root.oldVerCmd
-        pluginApi.pluginSettings.newVerCmd = root.newVerCmd
+        pluginApi.pluginSettings.checkCmd = root.checkCmd
         pluginApi.pluginSettings.updateCmd = root.updateCmd
 
         pluginApi.pluginSettings.flatpak = root.flatpak

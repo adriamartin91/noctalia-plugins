@@ -63,9 +63,24 @@ Item {
             NIcon { // Icon
                 color: mouseArea.containsMouse ? Color.mOnHover : (root.pluginApi.mainInstance.noctaliaUpdate ? Color.mHover : Color.mPrimary)
                 icon: (root.pluginApi.mainInstance.noctaliaUpdate | mouseArea.containsMouse) ? "arrow-big-down-lines-filled" : "arrow-big-down-lines"
+                visible: !root.pluginApi.mainInstance.refreshing
+            }
+            NIcon { // Loading spinner
+                icon: "loader"
+                color: mouseArea.containsMouse ? Color.mOnHover : Color.mOnSurfaceVariant
+                visible: root.pluginApi.mainInstance.refreshing
+
+                RotationAnimator on rotation {
+                    running: root.pluginApi.mainInstance.refreshing
+                    from: 0
+                    to: 360
+                    duration: 1000
+                    loops: Animation.Infinite
+                }
             }
             NText { // Count
-                text: (root.pluginApi.mainInstance.updateCount + root.pluginApi.mainInstance.flatpakCount).toString() // Total count (system + flatpak)
+                visible: !root.pluginApi.mainInstance.refreshing
+                text: (root.pluginApi.mainInstance.updateCount + root.pluginApi.mainInstance.flatpakCount).toString()
                 color: mouseArea.containsMouse ? Color.mOnHover : (root.pluginApi.mainInstance.noctaliaUpdate ? Color.mSecondary : Color.mOnSurface)
                 pointSize: Style.fontSizeM
                 font.weight: Font.Bold
