@@ -42,7 +42,21 @@
         "refreshTimer": "Refresh timer",
         "refreshTimerDesc": "Refresh on a timer",
         "interval": "Refresh interval",
-        "intervalDesc": "Update refresh interval in minutes: "
+        "intervalDesc": "Update refresh interval in minutes: ",
+        "appearance": "Appearance",
+        "boldText": "Bold text",
+        "boldTextDesc": "Display the update count in bold",
+        "useDistroLogo": "Use distro logo",
+        "useDistroLogoDesc": "Use your distribution logo as the widget icon",
+        "enableColorization": "Enable colorization",
+        "enableColorizationDesc": "Colorize the icon with a custom color",
+        "iconColor": "Icon color",
+        "iconColorDesc": "Choose the icon color",
+        "iconName": "Icon",
+        "iconNameDesc": "Choose the bar widget icon",
+        "browseLibrary": "Browse library",
+        "browseFile": "Browse file",
+        "selectCustomIcon": "Select custom icon"
     },
     "launcher": {
         "refreshDesc": "Refresh available updates",
