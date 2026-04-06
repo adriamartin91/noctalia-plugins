@@ -14,7 +14,7 @@ Item {
   // Shared state
   property var portList: []
   property int portCount: 0
-  property var sortedPorts: []
+  property list<var> sortedPorts: []
 
   // Terminal detection
   property string detectedTerminal: ""

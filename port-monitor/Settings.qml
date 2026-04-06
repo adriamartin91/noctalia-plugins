@@ -23,7 +23,7 @@ ColumnLayout {
 
     NLabel {
       label: pluginApi?.tr("settings.refreshInterval")
-      description: pluginApi?.tr("settings.refreshIntervalDesc") + root.editRefreshInterval
+      description: pluginApi?.tr("settings.refreshIntervalDesc", { value: root.editRefreshInterval })
     }
 
     NSlider {

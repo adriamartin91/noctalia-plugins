@@ -17,37 +17,11 @@ Item {
   readonly property var mainInstance: pluginApi?.mainInstance
   readonly property int portCount: mainInstance?.portCount ?? 0
 
-  ListModel { id: portModel }
-
-  Connections {
-    target: root.mainInstance
-    function onSortedPortsChanged() { root.rebuildModel() }
-  }
-
-  onMainInstanceChanged: rebuildModel()
-
-  function rebuildModel() {
-    var ports = root.mainInstance?.sortedPorts ?? []
-    for (var i = 0; i < ports.length; i++) {
-      var p = ports[i]
-      var entry = {
-        port: p.port,
-        proto: p.proto,
-        address: p.address,
-        processName: p.processName ?? "",
-        pid: p.pid ?? "",
-        hasProcess: (p.pid ?? "") !== ""
-      }
-      if (i < portModel.count) {
-        portModel.set(i, entry)
-      } else {
-        portModel.append(entry)
-      }
-    }
-    while (portModel.count > ports.length) {
-      portModel.remove(portModel.count - 1)
-    }
-  }
+  // Kill confirmation state
+  property string pendingKillPid: ""
+  property string pendingKillPort: ""
+  property string pendingKillProto: ""
+  property bool pendingKillIsSystem: false
 
   anchors.fill: parent
 
@@ -67,14 +41,60 @@ Item {
       NText {
         Layout.alignment: Qt.AlignHCenter
         Layout.topMargin: Style.marginM
-        text: {
-          if (root.portCount === 0) return pluginApi?.tr("panel.noPorts")
-          if (root.portCount === 1) return pluginApi?.tr("bar.onePort")
-          return root.portCount + " " + pluginApi?.tr("bar.multiplePorts")
-        }
+        text: root.portCount === 0 ? pluginApi?.tr("panel.noPorts") : pluginApi?.trp("bar.ports", root.portCount)
         pointSize: Style.fontSizeL
         font.weight: Font.DemiBold
         color: root.portCount > 0 ? Color.mPrimary : Color.mOnSurfaceVariant
+      }
+
+      // Confirmation bar
+      NBox {
+        id: confirmBar
+        visible: root.pendingKillPort !== ""
+        Layout.fillWidth: true
+        Layout.preferredHeight: confirmRow.implicitHeight + Style.marginM * 2
+
+        RowLayout {
+          id: confirmRow
+          anchors.fill: parent
+          anchors.margins: Style.marginM
+          spacing: Style.marginM
+
+          NText {
+            Layout.fillWidth: true
+            text: root.pendingKillIsSystem
+              ? pluginApi?.tr("panel.confirmKillSystem", { port: root.pendingKillPort })
+              : pluginApi?.tr("panel.confirmKill", { port: root.pendingKillPort })
+            pointSize: Style.fontSizeS
+            color: Color.mError
+            wrapMode: Text.WordWrap
+          }
+
+          NButton {
+            text: pluginApi?.tr("panel.confirm")
+            onClicked: {
+              if (root.pendingKillIsSystem) {
+                root.mainInstance?.killPortElevated(root.pendingKillPort, root.pendingKillProto)
+              } else {
+                root.mainInstance?.killProcess(root.pendingKillPid)
+              }
+              root.pendingKillPort = ""
+              root.pendingKillPid = ""
+              root.pendingKillProto = ""
+              root.pendingKillIsSystem = false
+            }
+          }
+
+          NButton {
+            text: pluginApi?.tr("panel.cancel")
+            onClicked: {
+              root.pendingKillPort = ""
+              root.pendingKillPid = ""
+              root.pendingKillProto = ""
+              root.pendingKillIsSystem = false
+            }
+          }
+        }
       }
 
       // Scrollable port list
@@ -90,11 +110,14 @@ Item {
           spacing: Style.marginS
 
           Repeater {
-            model: portModel
+            model: root.mainInstance?.sortedPorts ?? []
 
             delegate: NBox {
+              required property var modelData
               Layout.fillWidth: true
               Layout.preferredHeight: portRow.implicitHeight + Style.marginM * 2
+
+              readonly property bool hasProcess: (modelData.pid ?? "") !== ""
 
               RowLayout {
                 id: portRow
@@ -104,17 +127,17 @@ Item {
 
                 // Port number
                 NText {
-                  text: pluginApi?.tr("panel.portNumber", { port: model.port })
+                  text: pluginApi?.tr("panel.portNumber", { port: modelData.port })
                   pointSize: Style.fontSizeM
                   font.weight: Font.Bold
                   font.family: Settings.data.ui.fontFixed
-                  color: model.proto === "TCP" ? Color.mPrimary : Color.mTertiary
+                  color: modelData.proto === "TCP" ? Color.mPrimary : Color.mTertiary
                   Layout.preferredWidth: 60 * Style.uiScaleRatio
                 }
 
                 // Protocol badge
                 NText {
-                  text: model.proto
+                  text: modelData.proto
                   pointSize: Style.fontSizeXS
                   color: Color.mOnSurfaceVariant
                   Layout.preferredWidth: 30 * Style.uiScaleRatio
@@ -126,7 +149,7 @@ Item {
                   spacing: Style.marginXS
 
                   NText {
-                    text: model.address
+                    text: modelData.address
                     pointSize: Style.fontSizeS
                     font.family: Settings.data.ui.fontFixed
                     color: Color.mOnSurface
@@ -135,17 +158,17 @@ Item {
                   }
 
                   NText {
-                    text: model.processName ? pluginApi?.tr("panel.processInfo", { name: model.processName, pid: model.pid }) : pluginApi?.tr("panel.unknownProcess")
+                    text: modelData.processName ? pluginApi?.tr("panel.processInfo", { name: modelData.processName, pid: modelData.pid }) : pluginApi?.tr("panel.unknownProcess")
                     pointSize: Style.fontSizeS
-                    color: model.processName ? Color.mOnSurface : Color.mOnSurfaceVariant
+                    color: modelData.processName ? Color.mOnSurface : Color.mOnSurfaceVariant
                     Layout.fillWidth: true
                     elide: Text.ElideRight
                   }
                 }
 
-                // Kill button — user process: kill directly, system: pkexec
+                // Kill button with confirmation
                 NIcon {
-                  icon: model.hasProcess ? "x" : "shield-x"
+                  icon: hasProcess ? "x" : "shield-x"
                   pointSize: Style.fontSizeM
                   color: killArea.containsMouse ? Color.mError : Color.mOnSurfaceVariant
                   Layout.alignment: Qt.AlignVCenter
@@ -157,11 +180,10 @@ Item {
                     hoverEnabled: true
                     cursorShape: Qt.PointingHandCursor
                     onClicked: {
-                      if (model.hasProcess) {
-                        root.mainInstance?.killProcess(model.pid)
-                      } else {
-                        root.mainInstance?.killPortElevated(model.port.toString(), model.proto)
-                      }
+                      root.pendingKillPort = modelData.port.toString()
+                      root.pendingKillProto = modelData.proto
+                      root.pendingKillPid = modelData.pid ?? ""
+                      root.pendingKillIsSystem = !hasProcess
                     }
                   }
                 }

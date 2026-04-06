@@ -108,10 +108,8 @@ Item {
       var tip = ""
       if (root.portCount === 0) {
         tip = pluginApi?.tr("bar.noPorts")
-      } else if (root.portCount === 1) {
-        tip = pluginApi?.tr("bar.onePort")
       } else {
-        tip = root.portCount + " " + pluginApi?.tr("bar.multiplePorts")
+        tip = pluginApi?.trp("bar.ports", root.portCount)
       }
       if (root.portCount > 0) {
         tip += "\n───────────────"
