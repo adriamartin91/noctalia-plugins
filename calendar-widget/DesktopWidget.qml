@@ -20,6 +20,7 @@ DraggableDesktopWidget {
 
     // --- Date Logic ---
     property date currentDate: new Date()
+    // We use these as "Primitive Anchors"
     property int liveDay: new Date().getDate()
     property int liveMonth: new Date().getMonth()
     property int liveYear: new Date().getFullYear()
@@ -27,6 +28,7 @@ DraggableDesktopWidget {
     function refreshDate() {
         let now = new Date();
         currentDate = now;
+        // Updating these primitives is the "hammer" that forces QML to redraw
         liveDay = now.getDate();
         liveMonth = now.getMonth();
         liveYear = now.getFullYear();
@@ -59,10 +61,10 @@ DraggableDesktopWidget {
     // --- UI Layout ---
     Rectangle {
         anchors.fill: parent
-        color: Color.mSurface || "#1e1e1e"
+        color: Color.mSurface
         opacity: 0.85
         radius: Style.radiusM
-        border.color: Color.mOutlineVariant || "#333333"
+        border.color: Color.mOutline
         border.width: 1
 
         ColumnLayout {
@@ -72,7 +74,7 @@ DraggableDesktopWidget {
 
             NText {
                 text: currentDate.toLocaleDateString(Qt.locale(), "MMMM yyyy").toUpperCase()
-                color: Color.mPrimary || "#21A3D5"
+                color: Color.mPrimary
                 font.bold: true
                 font.letterSpacing: 1.2
                 font.pointSize: Style.fontSizeM
@@ -86,12 +88,11 @@ DraggableDesktopWidget {
                 columnSpacing: Style.marginS
                 Layout.fillWidth: true
 
-                // Days Header (M T W...)
                 Repeater {
                     model: root.days
                     NText {
                         text: modelData
-                        color: Color.mOnSurfaceVariant || "#888888"
+                        color: Color.mOnSurfaceVariant
                         font.bold: true
                         font.pointSize: Style.fontSizeS
                         Layout.fillWidth: true
@@ -99,17 +100,16 @@ DraggableDesktopWidget {
                     }
                 }
 
-                // Padding for start of month
                 Repeater {
                     model: root.firstDayOffset
                     Item { Layout.preferredWidth: 20 * widgetScale; Layout.preferredHeight: 20 * widgetScale }
                 }
 
-                // Calendar Days
                 Repeater {
                     model: root.daysInMonth
                     Rectangle {
                         readonly property int dayNum: index + 1
+
                         readonly property bool isActuallyToday:
                         dayNum === root.liveDay &&
                         root.currentDate.getMonth() === root.liveMonth &&
@@ -118,14 +118,13 @@ DraggableDesktopWidget {
                         Layout.preferredWidth: 28 * widgetScale
                         Layout.preferredHeight: 28 * widgetScale
 
-                        // Use safe color fallbacks
-                        color: isActuallyToday ? (Color.mPrimary || "#21A3D5") : "transparent"
+                        color: isActuallyToday ? Color.mPrimary
                         radius: Style.radiusS
 
                         NText {
                             anchors.centerIn: parent
                             text: dayNum
-                            color: isActuallyToday ? (Color.mOnPrimary || "#ffffff") : (Color.mOnSurface || "#eeeeee")
+                            color: isActuallyToday ? Color.mOnPrimary : Color.mOnSurface
                             font.bold: isActuallyToday
                             font.pointSize: Style.fontSizeS
                         }
