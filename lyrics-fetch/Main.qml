@@ -95,7 +95,7 @@ Item {
                 // Logger.d("songSeekProc", "playing:", data === "Playing")
                 // Logger.d("songSeekProc", "wasPlaying:", songSeekProc.lastState === "Playing")
                 if (data === "Playing" && songSeekProc.lastState === "Playing") {
-                    Logger.d("songSeekProc", "seeked")
+                    // Logger.d("songSeekProc", "seeked")
                     root.currentPosition = songSeekProc.lastPosition
                     root.songIndex = -2
                     root.lyricInterval = 0
@@ -215,10 +215,10 @@ Item {
                 try {
                     lyrics = JSON.parse(output)?.syncedLyrics?.toString() || ""
                 } catch (e) {
-                    Logger.e("fetchLyricProc", "Error parsing JSON:", e)
+                    Logger.e("LyricsFetch", "Fetching Lyrics | Error parsing JSON:", e)
                 }
                 if (!lyrics) {
-                    Logger.e("fetchLyricProc", "No synced lyrics")
+                    Logger.e("LyricsFetch", "Fetchingn Lyrics | No synced lyrics available")
                     root.isLoading = false
                     root.lastLyric = ""
                     return
@@ -264,7 +264,7 @@ Item {
             if (root.songIndex === -2) {
                 if ((root.songIndex = getLyricIndex()) === -2) {
                     root.lastLyric = ""
-                    Logger.e("lyricsTimer", "Invalid position")
+                    Logger.e("LyricsFetch", "Invalid position in song")
                     return
                 }
             }
