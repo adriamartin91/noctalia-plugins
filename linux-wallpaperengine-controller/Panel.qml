@@ -269,19 +269,21 @@ Item {
       return "";
     }
 
-    if (/^scheme\s+color$/i.test(raw)) {
-      return pluginApi?.tr("panel.propertyLabelThemeColor");
-    }
-
     const looksLikeKey = /^[a-z0-9_]+$/i.test(raw) && raw.indexOf("_") >= 0;
     if (!looksLikeKey) {
       return raw;
     }
 
-    return raw
+    const normalizedKey = raw
       .replace(/^ui_browse_properties_/i, "")
       .replace(/^ui_/i, "")
-      .replace(/^properties_/i, "")
+      .replace(/^properties_/i, "");
+
+    if (normalizedKey.toLowerCase() === "scheme_color") {
+      return pluginApi?.tr("panel.propertyLabelThemeColor");
+    }
+
+    return normalizedKey
       .split("_")
       .filter(part => part.length > 0)
       .map(part => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase())
