@@ -121,11 +121,11 @@
     }
   },
   "regionSelector": {
-    "drag": "Drag",
+    "drag": "Drag ",
     "toSelect": "to select",
-    "clickWindow": "Click window",
+    "clickWindow": "Click window ",
     "toSnap": "to snap",
-    "esc": "Esc",
+    "esc": "Esc ",
     "toCancel": "to cancel"
   },
   "annotate": {
