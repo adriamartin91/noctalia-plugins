@@ -16,6 +16,7 @@ Item {
   property real contentPreferredHeight: 450 * Style.uiScaleRatio
   
   readonly property var mainInstance: pluginApi?.mainInstance
+  readonly property var allowAttach: true
 
   Rectangle {
     id: panelContainer
