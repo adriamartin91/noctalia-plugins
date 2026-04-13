@@ -19,7 +19,7 @@
     {
       "id": "air-quality",
       "name": "Air Quality",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "official": false,
       "author": "adriamartin91",
       "description": "Displays real-time air quality data with EPA color coding. Supports Open-Meteo and AQICN data sources. Shows AQI index and pollutant breakdown.",
@@ -33,12 +33,12 @@
         "System",
         "Utility"
       ],
-      "lastUpdated": "2026-04-09T23:59:55+07:00"
+      "lastUpdated": "2026-04-13T17:44:48+02:00"
     },
     {
       "id": "arch-updater",
       "name": "Arch Updater",
-      "version": "1.1.2",
+      "version": "1.2.0",
       "official": false,
       "author": "Ast",
       "description": "A plugin to manage updates on Arch",
@@ -52,7 +52,7 @@
         "System",
         "Utility"
       ],
-      "lastUpdated": "2026-04-09T00:51:24+07:00"
+      "lastUpdated": "2026-04-09T10:36:41+02:00"
     },
     {
       "id": "assistant-panel",
@@ -207,7 +207,7 @@
     {
       "id": "coin-flip",
       "name": "Coin Flipper",
-      "version": "1.2.0",
+      "version": "1.2.1",
       "official": false,
       "author": "DanisDeveloper",
       "description": "Simple bar widget with notification about result",
@@ -216,7 +216,7 @@
       "tags": [
         "Bar"
       ],
-      "lastUpdated": "2026-04-09T19:33:03+03:00"
+      "lastUpdated": "2026-04-13T17:37:28+02:00"
     },
     {
       "id": "color-scheme-creator",
@@ -1132,6 +1132,22 @@
       "license": "MIT",
       "tags": [],
       "lastUpdated": "2026-03-29T19:05:12-04:00"
+    },
+    {
+      "id": "ru-menu",
+      "name": "RU Menu",
+      "version": "1.0.0",
+      "official": false,
+      "author": "Kermut572",
+      "description": "A simple plugin that fetches the current, past, and future weeks menu for UCLouvain's Restaurants Universitaires",
+      "repository": "https://github.com/noctalia-dev/noctalia-plugins",
+      "minNoctaliaVersion": "3.6.0",
+      "license": "MIT",
+      "tags": [
+        "Bar",
+        "Panel"
+      ],
+      "lastUpdated": "2026-04-10T17:07:23+02:00"
     },
     {
       "id": "saved-desktop-widgets",
