@@ -1,7 +1,7 @@
 {
   "widget": {
     "tooltip": "ntfy Benachrichtigungen",
-    "tooltipWithCount": "%1 ungelesene Benachrichtigungen",
+    "tooltipWithCount": "{count} ungelesene Benachrichtigungen",
     "noMessages": "Keine Benachrichtigungen"
   },
   "menu": {
@@ -24,9 +24,9 @@
     "topic": "Topic",
     "priority": "Priorität",
     "timeNow": "jetzt",
-    "timeMinutes": "vor %1 Min.",
-    "timeHours": "vor %1 Std.",
-    "timeDays": "vor %1 Tagen"
+    "timeMinutes": "vor {count} Min.",
+    "timeHours": "vor {count} Std.",
+    "timeDays": "vor {count} Tagen"
   },
   "settings": {
     "server": {
@@ -71,7 +71,7 @@
   },
   "toast": {
     "newMessage": "Neue ntfy Benachrichtigung",
-    "newMessages": "%1 neue Benachrichtigungen"
+    "newMessages": "{count} neue Benachrichtigungen"
   },
   "error": {
     "network": "Netzwerkfehler",

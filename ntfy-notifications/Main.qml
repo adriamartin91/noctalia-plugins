@@ -120,17 +120,17 @@ Item {
                     parseMessages(xhr.responseText);
                 } catch (e) {
                     root.errorMessage = pluginApi?.tr("error.parse");
-                    Logger.e("[ntfy] Parse error:", e.toString());
+                    Logger.e("ntfy", "Parse error:", e.toString());
                 }
             } else if (xhr.status === 401 || xhr.status === 403) {
                 root.errorMessage = pluginApi?.tr("error.auth");
-                Logger.w("[ntfy] Auth error:", xhr.status);
+                Logger.w("ntfy", "Auth error:", xhr.status);
             } else if (xhr.status === 0) {
                 root.errorMessage = pluginApi?.tr("error.network");
-                Logger.w("[ntfy] Network error");
+                Logger.w("ntfy", "Network error");
             } else {
                 root.errorMessage = pluginApi?.tr("error.server");
-                Logger.w("[ntfy] HTTP error:", xhr.status);
+                Logger.w("ntfy", "HTTP error:", xhr.status);
             }
 
             root.isLoading = false;
@@ -181,7 +181,7 @@ Item {
                 });
             } catch (e) {
                 // Skip malformed lines
-                Logger.d("[ntfy] Skipping malformed line:", line);
+                Logger.d("ntfy", "Skipping malformed line:", line);
             }
         }
 
@@ -233,7 +233,7 @@ Item {
             var title = msg.title || msg.topic || pluginApi?.tr("toast.newMessage");
             ToastService.showNotice(title, msg.message, "bell");
         } else if (newMessages.length > 1) {
-            var countText = pluginApi?.tr("toast.newMessages").replace("%1", newMessages.length);
+            var countText = pluginApi?.tr("toast.newMessages", { count: newMessages.length });
             ToastService.showNotice(countText, "", "bell");
         }
     }

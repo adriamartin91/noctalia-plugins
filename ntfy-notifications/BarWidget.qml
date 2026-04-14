@@ -78,7 +78,7 @@ Item {
 
             onEntered: {
                 var text = unreadCount > 0
-                    ? pluginApi?.tr("widget.tooltipWithCount").replace("%1", unreadCount)
+                    ? pluginApi?.tr("widget.tooltipWithCount", { count: unreadCount })
                     : pluginApi?.tr("widget.tooltip");
                 TooltipService.show(root, text, BarService.getTooltipDirection());
             }

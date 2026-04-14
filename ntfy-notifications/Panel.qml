@@ -53,14 +53,14 @@ Item {
         if (diff < 60) return pluginApi?.tr("panel.timeNow");
         if (diff < 3600) {
             var mins = Math.floor(diff / 60);
-            return pluginApi?.tr("panel.timeMinutes").replace("%1", mins);
+            return pluginApi?.tr("panel.timeMinutes", { count: mins });
         }
         if (diff < 86400) {
             var hours = Math.floor(diff / 3600);
-            return pluginApi?.tr("panel.timeHours").replace("%1", hours);
+            return pluginApi?.tr("panel.timeHours", { count: hours });
         }
         var days = Math.floor(diff / 86400);
-        return pluginApi?.tr("panel.timeDays").replace("%1", days);
+        return pluginApi?.tr("panel.timeDays", { count: days });
     }
 
     Rectangle {

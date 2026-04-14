@@ -1,7 +1,7 @@
 {
   "widget": {
     "tooltip": "ntfy Notifications",
-    "tooltipWithCount": "%1 unread notifications",
+    "tooltipWithCount": "{count} unread notifications",
     "noMessages": "No notifications"
   },
   "menu": {
@@ -24,9 +24,9 @@
     "topic": "Topic",
     "priority": "Priority",
     "timeNow": "now",
-    "timeMinutes": "%1m ago",
-    "timeHours": "%1h ago",
-    "timeDays": "%1d ago"
+    "timeMinutes": "{count}m ago",
+    "timeHours": "{count}h ago",
+    "timeDays": "{count}d ago"
   },
   "settings": {
     "server": {
@@ -71,7 +71,7 @@
   },
   "toast": {
     "newMessage": "New ntfy notification",
-    "newMessages": "%1 new notifications"
+    "newMessages": "{count} new notifications"
   },
   "error": {
     "network": "Network error",
